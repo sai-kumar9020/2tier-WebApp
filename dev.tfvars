@@ -13,4 +13,6 @@ db_password = "mypassword123"
 
 instance_type = "t2.micro"
 
+key_name = "my-key-pair"
+
 ami_id = "ami-0e35ddab05955cf57"
