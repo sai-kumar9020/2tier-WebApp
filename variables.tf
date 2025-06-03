@@ -45,10 +45,10 @@ variable "instance_type" {
   type        = string
 }
 
-# variable "key_name" {
-#   description = "SSH Key Pair Name for EC2"
-#   type        = string
-# }
+ variable "key_name" {
+   description = "SSH Key Pair Name for EC2"
+   type        = string
+ }
 
 variable "ami_id" {
   description = "ami id"
