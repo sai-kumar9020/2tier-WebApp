@@ -15,7 +15,6 @@ resource "aws_instance" "web_server" {
     sudo apt install -y nginx
     sudo systemctl enable nginx
     sudo systemctl start nginx
-    echo "===== Creating a simple HTML page ====="
     cat <<EOF | sudo tee /var/www/html/index.html > /dev/null
     <!DOCTYPE html>
     <html>
@@ -27,7 +26,7 @@ resource "aws_instance" "web_server" {
        <p>Nginx is successfully installed on your Ubuntu server.</p>
     </body>
     </html>
-    sudo chown -R apache:apache /var/www/html/
+    sudo chown -R nginx:nginx /var/www/html/
     sudo chmod -R 755 /var/www/html/
     sudo systemctl restart nginx
 EOF
