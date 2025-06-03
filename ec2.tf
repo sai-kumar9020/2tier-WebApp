@@ -43,5 +43,4 @@ resource "aws_instance" "web_server" {
   systemctl restart nginx
 EOF
 
-EOF
 }
