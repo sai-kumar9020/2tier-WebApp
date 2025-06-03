@@ -3,7 +3,7 @@ resource "aws_instance" "web_server" {
   instance_type   = var.instance_type
   subnet_id       = aws_subnet.public_subnet_1.id
   security_groups = [aws_security_group.ec2_sg.id]
-  key_name        = "my-key-pair" # Allow SSH access
+  key_name        = "var.key_name" # Allow SSH access
 
 
 
