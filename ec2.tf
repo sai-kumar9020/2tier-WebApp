@@ -10,24 +10,38 @@ resource "aws_instance" "web_server" {
   tags = { Name = "TF-WebServer" }
 
   user_data = <<-EOF
-    #!/bin/bash
-    sudo yum update -y
-    sudo apt install -y nginx
-    sudo systemctl enable nginx
-    sudo systemctl start nginx
-    cat <<EOF | sudo tee /var/www/html/index.html > /dev/null
-    <!DOCTYPE html>
-    <html>
-    <head>
-       <title>Welcome to Nginx</title>
-    </head>
-    <body>
-       <h1>Hello from $(hostname)!</h1>
-       <p>Nginx is successfully installed on your Ubuntu server.</p>
-    </body>
-    </html>
-    sudo chown -R nginx:nginx /var/www/html/
-    sudo chmod -R 755 /var/www/html/
-    sudo systemctl restart nginx
+  #!/bin/bash
+  set -e
+
+  # Update and install Nginx
+  apt update -y
+  apt install -y nginx
+
+  # Enable and start Nginx
+  systemctl enable nginx
+  systemctl start nginx
+
+  # Create custom index.html
+  cat <<EOT > /var/www/html/index.html
+  <!DOCTYPE html>
+  <html>
+  <head>
+     <title>Welcome to Nginx</title>
+  </head>
+  <body>
+     <h1>Hello from $(hostname)!</h1>
+     <p>Nginx is successfully installed on your Ubuntu server.</p>
+  </body>
+  </html>
+  EOT
+
+  # Set ownership and permissions
+  chown -R www-data:www-data /var/www/html/
+  chmod -R 755 /var/www/html/
+
+  # Restart nginx
+  systemctl restart nginx
+EOF
+
 EOF
 }
