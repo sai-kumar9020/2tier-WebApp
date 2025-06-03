@@ -9,7 +9,7 @@ private_subnet_1_cidr = "10.0.3.0/24"
 private_subnet_2_cidr = "10.0.4.0/24"
 
 db_username = "admin"
-db_password = "Sai@8341269020"
+db_password = "mypassword123"
 
 instance_type = "t2.micro"
 
